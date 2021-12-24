@@ -1,0 +1,72 @@
+//////-------------- Card Component
+
+// Valores con $, propiedades CSS, mixing, repetir el selector padre con amper sans
+
+.productCart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 550px;
+  border: solid 4px whitesmoke;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+  }
+
+  img {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
+.productDetail {
+  width: 50%;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 0 auto;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 70%;
+    margin-bottom: 10px;
+  }
+}
+
+.aboutCard {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 70%;
+  border: solid 4px whitesmoke;
+  border-radius: 15px;
+  padding: 40px;
+
+  img {
+    width: 80%;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  ol {
+    text-align: center;
+    list-style-type: none;
+  }
+
+  .info {
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
