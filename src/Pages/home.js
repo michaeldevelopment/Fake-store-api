@@ -6,7 +6,8 @@ import ProductCart from '../Components/productCart';
 export default function Home({ data }) {
   return (
     <>
-      <Container className="my-5">
+      <h2 className="text-center my-3"> Products </h2>
+      <Container className="my-1">
         <Row>
           {data.map((product) => {
             return (

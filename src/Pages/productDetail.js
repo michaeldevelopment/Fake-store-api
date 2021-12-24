@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
@@ -9,11 +9,9 @@ export default function ProductDetail() {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => setData(res.data));
-  });
+  axios
+    .get(`https://fakestoreapi.com/products/${id}`)
+    .then((res) => setData(res.data));
 
   return (
     <div className="productDetail mt-5">
