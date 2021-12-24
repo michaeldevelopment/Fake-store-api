@@ -1,0 +1,92 @@
+Preguntas Assesment Diciembre Make it Real
+
+1.	¿Cuáles son las ceremonias más importantes de un Sprint y cuál es la idea de cada una?
+Las ceremonias más importantes de un Sprint son:
+•	Planeación del Sprint: Se hace con el fin de dar cabalidad a suplir todas las funcionalidades que el software requiera según las historias de usuario hechas. Se fijan las metas o tareas a cumplir según los compromisos de cada uno.
+
+•	Daily Scrums: Se hace con el fin de atender cualquier dificultad que haya tenido algún miembro del equipo con alguna tarea en específico. Además, se visualiza el panorama general del avance de cada team member y en lo que está trabajando
+
+•	Tiempo de historias de usuario: Se hace con el fin de mejorar las historias de usuario
+
+•	Sprint Review: Se hace una revisión a detalle del avance del sprint actual, es decir, el incremento.
+
+•	Retrospectiva: Se identifican los cambios que sean necesarios para el siguiente sprint. 
+
+2.	¿Qué son los Wireframes? Nombra al menos una herramienta que podamos utilizar.
+Los wireframes son bocetos o borradores de todas las vistas de nuestra aplicación en función. Los wireframes no contienen detalles ni refinamientos estéticos, solo el “sketching” de la visualización de la app.
+Herramientas: Miro, Figma.
+
+3.	Explicar la diferencia entre var, let y const. Y dar un ejemplo en qué caso se utilizará.
+Var: Es el tipo de dato general más antiguo para declarar variables en Javascript. Var solo se limita a ser usada dentro de una función en específico. Si mi intención es utilizar una variable solo dentro de una misma función o ciclo, uso var. 
+Let: Es un tipo de variable que permite flexibilidad en cuánto a la modificación de su mismo valor. Si mi intención es alterar el valor de una variable posteriormente de haber sido inicializada, uso let.
+Const: Es un tipo de variable que NO permite la modificación del valor de su misma variable. Como su nombre lo indica, su valor es constante. Si mi intención es fijarle a una variable un valor inalterable en un futuro, uso const. 
+
+4.	¿Cuáles son los tres comandos que se pueden utilizar para crear una nueva rama llamada rama-1?
+Git Branch rama-1
+Git checkout -b rama-1
+Git -b rama-1
+
+5.	Explicar la diferencia entre git merge y git rebase.
+La diferencia principal entre éstos 2 comandos radica en el historial de commits. El git merge permite unificar las ramas dejando el historial de commits intacto. 
+
+En cambio, haciendo uso de git rebase se unifican las ramas y al mismo tiempo se pierde todo el historial de commits hecho
+6.	¿Cuál es la diferencia entre Pull Request (PR) y el comando git pull?
+El pull request solo se hace en GitHub y el git pull solo se hace en Git. Además, PR permite hacer la antesala al merge y tener la aprobación de todos los miembros del equipo para poder hacerlo (siendo ese el caso). GP automáticamente actualiza y sube lo que se haya hecho.
+
+7.	¿Qué es el Virtual DOM?
+El Virtual DOM es una representación del DOM guardada en memoria, que actúa de intermediario entre los estados de la aplicación y los estados del DOM (vistos por el cliente o usuario).
+
+8.	Dado el siguiente codePen, el cual solo tiene un HTML, por medio de css llegar a esta respuesta. Imagen. (Para mostrar los servicios debes usar CSS Flexbox o CSS Grid).
+
+HEAD: <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+body {
+  margin: 0;
+  line-height : 25px;
+}
+
+h2, h3 {
+  font-family: 'Anonymous Pro', monospace;
+  text-align:center;
+}
+
+li {
+  list-style-type:none;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.c-section__title {
+  background-color: #212121;
+  color:white;
+  text-align:center;
+  padding: 1rem;
+  margin:0;
+  border-top: solid 10px #9D9D9D;
+}
+
+ul {
+  padding-left: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:center;
+  align-items: center;
+}
+
+.c-services__item {
+  background-color: #F7F6F2;
+  width: 43%;
+  margin: 1rem;
+  padding: 2rem;
+  transition: 0.3s;
+}
+
+.c-services__item:hover {
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
