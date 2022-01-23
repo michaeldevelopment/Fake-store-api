@@ -1,53 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { Row, Col, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function ProductCart({ title, image, id }) {
-  const [timerMinutes, setTimerMinutes] = useState('00');
-  const [timerSeconds, setTimerSeconds] = useState('00');
+  const [active, setActive] = useState(false);
+  const [minutes, setMinutes] = useState(Math.floor(Math.random() * 2));
+  const [seconds, setSeconds] = useState(Math.floor(Math.random() * 59) + 0);
 
-  let interval;
-
-  const startTimer = () => {
-    const countdownDate = new Date('Dec 30, 2021').getTime();
-
-    interval = setInterval(() => {
-      const now = new Date().getTime();
-      const gap = countdownDate - now;
-
-      const minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((gap % (1000 * 60)) / 1000);
-
-      if (gap < 0) {
-        // stop timer
-        clearInterval(interval.current);
-      } else {
-        setTimerMinutes(minutes);
-        setTimerSeconds(seconds);
-      }
-    }, 1000);
-  };
+  var timer = useRef();
 
   useEffect(() => {
-    startTimer();
+    timer.current = setInterval(() => {
+      setSeconds(seconds - 1);
+      if (seconds === 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      }
+      if (seconds === 0 && minutes === 0) {
+        setMinutes(0);
+        setSeconds(0);
+        setActive(true);
+        clearInterval(timer.current);
+      }
+    }, 1000);
+
+    return () => clearInterval(timer.current);
   });
 
   let navigate = useNavigate();
 
+  const handleOnRedirect = () => {
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <div className="productCart my-4">
-      <img src={image} alt="Shirt"></img>
+      <img src={image} alt={title}></img>
       <h5> {title} </h5>
       <Row className="mt-4">
         <Col>
-          <span> {timerMinutes}: </span> <span> {timerSeconds} </span>
+          <span>
+            {"0"}
+            {minutes}:
+          </span>
+          <span>
+            {seconds < 10 && "0"}
+            {seconds}
+          </span>
         </Col>
         <Col>
-          <Button
-            onClick={() => {
-              navigate(`/detail/${id}`);
-            }}
-          >
+          <Button onClick={handleOnRedirect} disabled={active}>
             Comprar
           </Button>
         </Col>

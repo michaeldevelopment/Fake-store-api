@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { Container, Row, Col } from 'react-bootstrap';
-import ProductCart from '../Components/productCart';
+import { Container, Row, Col } from "react-bootstrap";
+import ProductCart from "../Components/productCart";
 
-export default function Home({ data }) {
+const Home = ({ data, seconds, active }) => {
   return (
     <>
       <h2 className="text-center my-3"> Products </h2>
@@ -16,6 +16,8 @@ export default function Home({ data }) {
                   title={product.title}
                   image={product.image}
                   id={product.id}
+                  seconds={seconds}
+                  active={active}
                 />
               </Col>
             );
@@ -24,4 +26,6 @@ export default function Home({ data }) {
       </Container>
     </>
   );
-}
+};
+
+export default Home;

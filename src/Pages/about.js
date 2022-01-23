@@ -1,6 +1,6 @@
-import React from 'react';
-import { Row, Col } from 'react-bootstrap';
-import Michael from '../images/michael.jpg';
+import React from "react";
+import { Row, Col } from "react-bootstrap";
+import Michael from "../images/michael.jpg";
 
 export default function About() {
   return (
@@ -17,7 +17,7 @@ export default function About() {
               todo lo que es importante, mi principal objetivo es vivir mi
               propósito y ser porción de vida para otros. Visto desde todos los
               ámbitos y perspectivas. Curioso y apasionado por lo estético,
-              visual y funcional.{' '}
+              visual y funcional.
               <strong> ¡Gracias por visitar ésta sección! </strong>
             </p>
           </Col>
@@ -38,8 +38,7 @@ export default function About() {
           </Col>
           <Col>
             <a href="https://github.com/michaeldevelopment">
-              {' '}
-              Has clic aqui para conocer mi perfil de GitHub{' '}
+              Has clic aqui para conocer mi perfil de GitHub
             </a>
           </Col>
         </Row>
