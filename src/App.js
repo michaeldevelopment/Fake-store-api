@@ -12,19 +12,30 @@ import ProductDetail from "./Pages/productDetail.js";
 
 import { fetchData } from "./utils/fetchData";
 
-function App() {
-  const [data, setData] = useState([]);
+import { ProductsConsumer } from "./Context/index";
 
-  useEffect(() => fetchData("https://fakestoreapi.com/products", setData), []);
+function App() {
+  const { products, getProducts } = ProductsConsumer();
+
+  useEffect(
+    () => fetchData("https://fakestoreapi.com/products", getProducts),
+    []
+  );
 
   return (
     <>
       <Router>
         <Navigation>
           <Routes>
-            <Route path="/" element={data && <Home data={data} />} />
+            <Route
+              path="/"
+              element={products && <Home products={products} />}
+            />
             <Route path="/about" element={<About />} />
-            <Route path="/detail/:id" element={<ProductDetail data={data} />} />
+            <Route
+              path="/detail/:id"
+              element={<ProductDetail products={products} />}
+            />
             <Route path="/class" element={<ClassComponent />} />
             <Route path="/study" element={<Study />} />
           </Routes>
