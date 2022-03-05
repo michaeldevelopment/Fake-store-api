@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navigation from "./Components/navigation";
 import ClassComponent from "./Components/ClassComponent";
 import Study from "./Components/Study";
+import Todos from "./Components/Todos";
 
 import About from "./Pages/about";
 import Home from "./Pages/home";
 import ProductDetail from "./Pages/productDetail.js";
+
+import { Provider } from "react-redux";
 
 import { fetchData } from "./utils/fetchData";
 
@@ -38,6 +41,15 @@ function App() {
             />
             <Route path="/class" element={<ClassComponent />} />
             <Route path="/study" element={<Study />} />
+
+            <Route
+              path="/todos"
+              element={
+                <Provider>
+                  <Todos />
+                </Provider>
+              }
+            />
           </Routes>
         </Navigation>
       </Router>
