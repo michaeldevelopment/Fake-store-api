@@ -25,7 +25,7 @@ function ProductCart({ title, image, id }) {
     }, 1000);
 
     return () => clearInterval(timer.current);
-  });
+  }, [minutes, seconds]);
 
   let navigate = useNavigate();
 
@@ -34,27 +34,29 @@ function ProductCart({ title, image, id }) {
   };
 
   return (
-    <div className="productCart my-4">
-      <img src={image} alt={title}></img>
-      <h5> {title} </h5>
-      <Row className="mt-4">
-        <Col>
-          <span>
-            {"0"}
-            {minutes}:
-          </span>
-          <span>
-            {seconds < 10 && "0"}
-            {seconds}
-          </span>
-        </Col>
-        <Col>
-          <Button onClick={handleOnRedirect} disabled={active}>
-            Comprar
-          </Button>
-        </Col>
-      </Row>
-    </div>
+    <>
+      <div className="productCart my-4">
+        <img src={image} alt={title}></img>
+        <h5> {title} </h5>
+        <Row className="mt-4">
+          <Col>
+            <span>
+              {"0"}
+              {minutes}:
+            </span>
+            <span>
+              {seconds < 10 && "0"}
+              {seconds}
+            </span>
+          </Col>
+          <Col>
+            <Button onClick={handleOnRedirect} disabled={active}>
+              Comprar
+            </Button>
+          </Col>
+        </Row>
+      </div>
+    </>
   );
 }
 
