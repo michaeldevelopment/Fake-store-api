@@ -4,52 +4,30 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Navigation from "./Components/navigation";
 import ClassComponent from "./Components/ClassComponent";
-import Study from "./Components/Study";
-import Todos from "./Components/Todos";
+
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "./store/actions";
 
 import About from "./Pages/about";
 import Home from "./Pages/home";
 import ProductDetail from "./Pages/productDetail.js";
 
-import { Provider } from "react-redux";
-
-import { fetchData } from "./utils/fetchData";
-
-import { ProductsConsumer } from "./Context/index";
-
 function App() {
-  const { products, getProducts } = ProductsConsumer();
+  const dispatch = useDispatch();
 
-  useEffect(
-    () => fetchData("https://fakestoreapi.com/products", getProducts),
-    []
-  );
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   return (
     <>
       <Router>
         <Navigation>
           <Routes>
-            <Route
-              path="/"
-              element={products && <Home products={products} />}
-            />
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route
-              path="/detail/:id"
-              element={<ProductDetail products={products} />}
-            />
+            <Route path="/detail/:id" element={<ProductDetail />} />
             <Route path="/class" element={<ClassComponent />} />
-            <Route path="/study" element={<Study />} />
-
-            <Route
-              path="/todos"
-              element={
-                <Provider>
-                  <Todos />
-                </Provider>
-              }
-            />
           </Routes>
         </Navigation>
       </Router>

@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
-export default function ProductDetail({ data }) {
+export default function ProductDetail() {
   const { id } = useParams();
+  const products = useSelector((state) => state.products);
 
-  const productData = data.find((p) => p.id === Number(id));
+  const productData = products.find((p) => p.id === Number(id));
 
   return (
     <div className="productDetail mt-5">
