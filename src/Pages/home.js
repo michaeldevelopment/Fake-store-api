@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
-import ProductCart from "../Components/productCart";
+import ProductCart from "../Components/ProductCart";
 
-const Home = ({ products, seconds, active }) => {
+export default function Home({ products, seconds, active }) {
   return (
     <>
       <h2 className="text-center my-3"> Products </h2>
@@ -26,6 +26,4 @@ const Home = ({ products, seconds, active }) => {
       </Container>
     </>
   );
-};
-
-export default Home;
+}

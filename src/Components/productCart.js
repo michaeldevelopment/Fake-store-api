@@ -27,7 +27,7 @@ function ProductCart({ title, image, id }) {
     return () => clearInterval(timer.current);
   });
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleOnRedirect = () => {
     navigate(`/detail/${id}`);

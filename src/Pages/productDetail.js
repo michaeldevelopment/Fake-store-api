@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
-export default function ProductDetail({ data }) {
+export default function ProductDetail({ products }) {
   const { id } = useParams();
 
-  const productData = data.find((p) => p.id === Number(id));
+  const productData = products.find((p) => p.id === Number(id));
 
   return (
     <div className="productDetail mt-5">
