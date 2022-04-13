@@ -36,7 +36,7 @@ function ProductCart({ title, image, id }) {
   return (
     <div className="productCart my-4">
       <img src={image} alt={title}></img>
-      <h5> {title} </h5>
+      <h5 className="titleProductCart"> {title} </h5>
       <Row className="mt-4">
         <Col>
           <span>

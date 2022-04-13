@@ -18,6 +18,7 @@ export default function Home({ products, seconds, active }) {
                   id={product.id}
                   seconds={seconds}
                   active={active}
+                  className={`productCart[${product.id}]`}
                 />
               </Col>
             );
