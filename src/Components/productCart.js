@@ -49,7 +49,11 @@ function ProductCart({ title, image, id }) {
           </span>
         </Col>
         <Col>
-          <Button onClick={handleOnRedirect} disabled={active}>
+          <Button
+            onClick={handleOnRedirect}
+            disabled={active}
+            className="buyButton"
+          >
             Comprar
           </Button>
         </Col>

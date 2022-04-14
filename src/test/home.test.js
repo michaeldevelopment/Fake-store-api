@@ -1,11 +1,13 @@
 /* eslint-disable */
-import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+
+import React from "react";
+import { mount, shallow } from "enzyme";
 import ProductCart from "../Components/ProductCart";
 import Home from "../Pages/Home";
+import { RouterMock } from "./RouterMock";
+import { BrowserRouter } from "react-router-dom";
 
-test("renders content", () => {
+describe("<Home /> Component", () => {
   const products = [
     {
       id: 1,
@@ -49,27 +51,40 @@ test("renders content", () => {
     },
   ];
 
-  const HomePage = render(
+  const wrapper = mount(
     <BrowserRouter>
       <Home products={products} />
     </BrowserRouter>
   );
 
-  HomePage.getByText("Mens Cotton Jacket");
-});
+  it("Validate if Home Component Renders", () => {
+    expect(wrapper.length).toEqual(1);
+  });
 
-test("click to buy", () => {
-  const props = {
-    title: "Mens Cotton Jacket",
-    image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    id: 2,
-  };
+  it("Validate if Home Component have Product Text", () => {
+    const text = wrapper.find("h2").text();
+    expect(text).toEqual(" Products ");
 
-  const Card = render(
-    <BrowserRouter>
-      <ProductCart props={props} />
-    </BrowserRouter>
-  );
+    // expect(wrapper.contains(" Products ")).toBe(true);
 
-  expect(Card.getByRole("button", { name: "Comprar" })).toBeEnabled();
+    // expect(wrapper.text()).toContain(" Products ");
+  });
+
+  it("Validate if <Home /> renders Child component <ProductCart />", () => {
+    // const productCart1 = wrapper.find({ className: "productCart[1]" });
+    // expect(productCart1.length).toEqual(1);
+
+    // const productCart2 = wrapper.find({ className: "productCart[2]" });
+    // expect(productCart2.length).toEqual(1);
+
+    // ------------------**********-------------*********-------------------- //
+
+    // el metodo FIND no sirve para saber si un COMPONENTE SE ESTA RENDERIZANDO
+    // containsMatchingElement sirve para saber si un componente hijo se HA RENDERIZADO.
+
+    // No es lo mismo decir que el "length" de algo es = 1, que a decir que el componente se ha renderizado.
+    // .length.toEqual(1) !== containsMatchingElement().toEqual(true)
+
+    expect(wrapper.containsMatchingElement(<ProductCart />)).toEqual(true);
+  });
 });
