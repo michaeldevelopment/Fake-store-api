@@ -19,40 +19,26 @@ se renderiza. --/// Aqui es donde entra Enzyme
 /* eslint-disable */
 
 import React from "react";
-import { mount, shallow } from "enzyme";
-import ProductCart from "../Components/ProductCart";
+import { mount } from "enzyme";
 import Home from "../Pages/Home";
-import { RouterMock } from "./RouterMock";
-import { BrowserRouter } from "react-router-dom";
+import { oneProduct } from "../mocks/oneProduct";
+import RouterMock from "./RouterMock";
 
 describe.only("<ProductCart /> Component", () => {
-  const clickHandler = jest.fn();
-
-  const testingProps = [
-    {
-      id: 3,
-      title: "Mens Cotton Jacket",
-      price: 55.99,
-      description:
-        "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-      category: "men's clothing",
-      image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-      rating: {
-        rate: 4.7,
-        count: 500,
-      },
-    },
-  ];
+  // Diferencia entre Shallow y Mount
+  // Shallow me renderiza EL COMPONENTE sin sus COMPONENTES HIJOS
+  // Mount renderiza todo el COMPONENTE incluyendo sus COMPONENTES HIJOS
 
   const wrapper = mount(
-    <BrowserRouter>
-      <Home products={testingProps}>
-        <ProductCart />
-      </Home>
-    </BrowserRouter>
+    <RouterMock>
+      <Home products={oneProduct}></Home>
+    </RouterMock>
   );
 
+  // wrapper.debug() me permite ver en la terminal el arbol DOM renderizado.
+
   it("Validate if <ProductCart /> renders with the correct props", () => {
+    console.log(wrapper.debug());
     expect(wrapper.find({ className: "productCart[3]" }).prop("title")).toBe(
       "Mens Cotton Jacket"
     );
@@ -60,10 +46,18 @@ describe.only("<ProductCart /> Component", () => {
     expect(wrapper.find({ className: "productCart[3]" }).prop("id")).toBe(3);
   });
 
-  it.only("Simulate an event click", () => {
-    wrapper.find({ className: "buyButton" }).simulate("click");
-    expect(clickHandler.mock.calls.length).toEqual(1);
-    expect(clickHandler).toBeCalled();
-    expect(clickHandler).toHaveBeenCalledTimes(1);
+  // El click se puede testear de manera que por ejemplo, al hacer click, me aumente el contador de una variable
+  // de estado en 1, o si clickeo 2 veces me la aumente a 2 y testear si el valor es igual a 1 o 2.
+
+  // TEST DRIVEN DEVELOPMENT !!! TDD - Primero hacer las pruebas y luego programar el codigo.
+
+  it.only("Validate if when click button increment value of counter in 1", () => {
+    // Validar si el valor inicial del counter es 0 al inicial el codigo
+    expect(wrapper.find("#counter").text()).toBe("0");
+    // Testeando el evento click del contador
+    const button = wrapper.find("#incrementBtn");
+    expect(button.text()).toEqual("Inc+");
+    button.simulate("click");
+    expect(wrapper.find("#counter").text()).toBe("1");
   });
 });

@@ -1,11 +1,10 @@
-import React from "react";
 import { createBrowserHistory } from "history";
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const history = createBrowserHistory();
 
-const RouterMock = (props) => (
-  <Router history={history}>{props.children}</Router>
-);
+const RouterMock = ({ children }) => {
+  return <BrowserRouter history={history}>{children}</BrowserRouter>;
+};
 
 export default RouterMock;
