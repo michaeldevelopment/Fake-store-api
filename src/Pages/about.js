@@ -1,11 +1,12 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 import Michael from "../images/michael.jpg";
+import { motion } from "framer-motion";
 
 export default function About() {
   return (
     <>
-      <div className="aboutCard mt-4">
+      <motion.div className="aboutCard mt-4">
         <Row>
           <Col>
             <img src={Michael} alt="Michael"></img>
@@ -42,7 +43,7 @@ export default function About() {
             </a>
           </Col>
         </Row>
-      </div>
+      </motion.div>
     </>
   );
 }

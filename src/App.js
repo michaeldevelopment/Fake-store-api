@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navigation from "./Components/navigation";
 import ClassComponent from "./Components/ClassComponent";
@@ -14,6 +14,8 @@ import { fetchData } from "./utils/fetchData";
 
 import { ProductsConsumer } from "./Context/index";
 
+import { AnimatePresence } from "framer-motion";
+
 function App() {
   const { products, getProducts } = ProductsConsumer();
 
@@ -22,19 +24,26 @@ function App() {
     []
   );
 
+  const location = useLocation();
+
   return (
     <>
       <Navigation>
-        <Routes>
-          <Route path="/" element={products && <Home products={products} />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/detail/:id"
-            element={<ProductDetail products={products} />}
-          />
-          <Route path="/class" element={<ClassComponent />} />
-          <Route path="/study" element={<Study />} />
-        </Routes>
+        <AnimatePresence>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={products && <Home products={products} />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/detail/:id"
+              element={<ProductDetail products={products} />}
+            />
+            <Route path="/class" element={<ClassComponent />} />
+            <Route path="/study" element={<Study />} />
+          </Routes>
+        </AnimatePresence>
       </Navigation>
     </>
   );
