@@ -3,7 +3,6 @@ import { Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function ProductCart({ title, image, id }) {
-  const [counter, setCounter] = useState(0);
   const [active, setActive] = useState(false);
   const [minutes, setMinutes] = useState(Math.floor(Math.random() * 2));
   const [seconds, setSeconds] = useState(Math.floor(Math.random() * 59) + 0);
@@ -34,10 +33,6 @@ function ProductCart({ title, image, id }) {
     navigate(`/detail/${id}`);
   };
 
-  const handleIncrement = () => {
-    setCounter(counter + 1);
-  };
-
   return (
     <div className="productCart my-4">
       <img src={image} alt={title}></img>
@@ -61,12 +56,6 @@ function ProductCart({ title, image, id }) {
           >
             Comprar
           </Button>
-        </Col>
-        <Col>
-          <button id="incrementBtn" onClick={handleIncrement}>
-            Inc+
-          </button>
-          <p id="counter">{counter}</p>
         </Col>
       </Row>
     </div>
