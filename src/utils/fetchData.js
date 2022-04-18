@@ -1,5 +1,9 @@
 import axios from "axios";
 
-export const fetchData = (url, setState) => {
-  axios.get(url).then((res) => setState(res.data));
+const url = "https://fakestoreapi.com/products";
+
+const fetchData = async () => {
+  return await axios.get(url).then((res) => res.data);
 };
+
+export default fetchData;

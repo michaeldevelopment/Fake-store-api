@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect } from "react";
 
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -10,7 +11,7 @@ import About from "./Pages/about";
 import Home from "./Pages/home";
 import ProductDetail from "./Pages/productDetail.js";
 
-import { fetchData } from "./utils/fetchData";
+import fetchData from "./utils/fetchData";
 
 import { ProductsConsumer } from "./Context/index";
 
@@ -19,8 +20,9 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   const { products, getProducts } = ProductsConsumer();
 
-  useEffect(() => {
-    fetchData("https://fakestoreapi.com/products", getProducts);
+  useEffect(async () => {
+    const data = await fetchData();
+    getProducts(data);
   }, []);
 
   const location = useLocation();
