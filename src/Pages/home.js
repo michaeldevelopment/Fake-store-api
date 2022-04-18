@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
-import ProductCart from "../Components/ProductCart";
+import ProductCart from "../Components/productCart";
 
 import { motion } from "framer-motion";
 
@@ -18,20 +18,14 @@ export default function Home({ products, seconds, active }) {
           {products.map((product) => {
             return (
               <Col key={product.id} md="auto">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <ProductCart
-                    title={product.title}
-                    image={product.image}
-                    id={product.id}
-                    seconds={seconds}
-                    active={active}
-                    className={`productCart[${product.id}]`}
-                  />
-                </motion.div>
+                <ProductCart
+                  title={product.title}
+                  image={product.image}
+                  id={product.id}
+                  seconds={seconds}
+                  active={active}
+                  className={`productCart[${product.id}]`}
+                />
               </Col>
             );
           })}

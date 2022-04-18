@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 
+import { motion } from "framer-motion";
+
 export default function ProductDetail({ products }) {
   const { id } = useParams();
 
-  const productData = products.find((p) => p.id === Number(id));
+  const productData = products?.find((p) => p.id === Number(id));
 
   return (
-    <div className="productDetail mt-5">
+    <motion.div
+      className="productDetail mt-5"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Row>
         <Col>
           <img src={productData.image} alt={productData.title} />
@@ -24,6 +31,6 @@ export default function ProductDetail({ products }) {
           </p>
         </Col>
       </Row>
-    </div>
+    </motion.div>
   );
 }

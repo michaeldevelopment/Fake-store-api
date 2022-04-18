@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function ProductCart({ title, image, id }) {
   const [active, setActive] = useState(false);
@@ -34,7 +35,12 @@ function ProductCart({ title, image, id }) {
   };
 
   return (
-    <div className="productCart my-4">
+    <motion.div
+      className="productCart my-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <img src={image} alt={title}></img>
       <h5 className="titleProductCart"> {title} </h5>
       <Row className="mt-4">
@@ -58,7 +64,7 @@ function ProductCart({ title, image, id }) {
           </Button>
         </Col>
       </Row>
-    </div>
+    </motion.div>
   );
 }
 

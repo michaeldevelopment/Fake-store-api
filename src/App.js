@@ -6,9 +6,9 @@ import Navigation from "./Components/navigation";
 import ClassComponent from "./Components/ClassComponent";
 import Study from "./Components/Study";
 
-import About from "./Pages/About";
-import Home from "./Pages/Home";
-import ProductDetail from "./Pages/ProductDetail.js";
+import About from "./Pages/about";
+import Home from "./Pages/home";
+import ProductDetail from "./Pages/productDetail.js";
 
 import { fetchData } from "./utils/fetchData";
 
@@ -19,10 +19,10 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   const { products, getProducts } = ProductsConsumer();
 
-  useEffect(
-    () => fetchData("https://fakestoreapi.com/products", getProducts),
-    []
-  );
+  useEffect(() => {
+    fetchData("https://fakestoreapi.com/products", getProducts);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const location = useLocation();
 
@@ -38,7 +38,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route
               path="/detail/:id"
-              element={<ProductDetail products={products} />}
+              element={
+                products.length ? <ProductDetail products={products} /> : null
+              }
             />
             <Route path="/class" element={<ClassComponent />} />
             <Route path="/study" element={<Study />} />
