@@ -14,11 +14,11 @@ export default function Product({
         <img src={image} alt={title} />
       </Col>
       <Col>
-        <h3> {title} </h3>
-        <h4> Price: ${price} </h4>
-        <p> {description} </p>
+        <h3>{title}</h3>
+        <h4>Price: ${price}</h4>
+        <p>{description}</p>
         <hr />
-        <p> Category: {category} </p>
+        <p>Category: {category}</p>
         <p>
           Rating: {rating.rate}
           <span> &#9733;</span> Count: {rating.count}

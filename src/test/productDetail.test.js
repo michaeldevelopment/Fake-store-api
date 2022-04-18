@@ -1,26 +1,30 @@
 /*eslint-disable*/
 
 import React from "react";
-import { mount } from "enzyme";
+import { mount, unmount } from "enzyme";
 import Product from "../Components/Product";
 import { oneProduct as productData } from "../mocks/oneProduct";
+import { products } from "../mocks/products";
 // import { oneProduct } from "../mocks/oneProduct";
-import ProductDetail from "../Pages/productDetail";
 import RouterMock from "../mocks/RouterMock";
 
 import Button from "react-bootstrap/Button";
 
 describe.only("<ProductDetail /> Page", () => {
-  const wrapper = mount(
-    <RouterMock>
-      <ProductDetail {...productData} />
-    </RouterMock>
-  );
-
   it("Testing all product detail elements", () => {
-    console.log(wrapper.debug());
+    products.forEach((container) => {
+      const wrapper = mount(
+        <RouterMock>
+          <Product {...container} />
+        </RouterMock>
+      );
 
-    // global.window = { location: { pathname: `/detail/${products[0]}.id` } };
-    // expect(wrapper.find("h5").text()).toBe(products[index].title);
+      expect(wrapper.find("h3").text()).toBe(container.title);
+      expect(wrapper.find("h4").text()).toBe(`Price: $${container.price}`);
+      expect(wrapper.find("p").at(0).text()).toBe(container.description);
+      expect(wrapper.find("p").at(1).text()).toBe(
+        `Category: ${container.category}`
+      );
+    });
   });
 });
