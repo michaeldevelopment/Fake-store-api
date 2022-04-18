@@ -9,20 +9,21 @@ y testear su comportamiento.
 Guia basica para testear en React.
 
 1. Testear las props del componente en cuestion. Si las está recibiendo correctamente y si está renderizando 
-2. Para hacer testing en componentes, es necesario montarlos dentro de las pruebas. Ya que por si solo, no se instancia ni 
+2. Para hacer testing en componentes,Card es necesario montarlos dentro de las pruebas. Ya que por si solo, no se instancia ni 
 se renderiza. --/// Aqui es donde entra Enzyme
 3. 
-4.
-
-*/
+4. */
 
 /* eslint-disable */
 
 import React from "react";
 import { mount } from "enzyme";
 import Home from "../Pages/Home";
-import { oneProduct } from "../mocks/oneProduct";
-import RouterMock from "./RouterMock";
+import { products } from "../mocks/products";
+import ProductCart from "../Components/productCart";
+import RouterMock from "../mocks/RouterMock";
+
+import Button from "react-bootstrap/Button";
 
 describe.only("<ProductCart /> Component", () => {
   // Diferencia entre Shallow y Mount
@@ -31,7 +32,7 @@ describe.only("<ProductCart /> Component", () => {
 
   const wrapper = mount(
     <RouterMock>
-      <Home products={oneProduct}></Home>
+      <Home products={products}></Home>
     </RouterMock>
   );
 
@@ -51,7 +52,7 @@ describe.only("<ProductCart /> Component", () => {
 
   // TEST DRIVEN DEVELOPMENT !!! TDD - Primero hacer las pruebas y luego programar el codigo.
 
-  it.only("Validate if when click button increment value of counter in 1", () => {
+  it.skip("Validate if when click button increment value of counter in 1", () => {
     // Validar si el valor inicial del counter es 0 al inicial el codigo
     expect(wrapper.find("#counter").text()).toBe("0");
     // Testeando el evento click del contador
@@ -59,5 +60,20 @@ describe.only("<ProductCart /> Component", () => {
     expect(button.text()).toEqual("Inc+");
     button.simulate("click");
     expect(wrapper.find("#counter").text()).toBe("1");
+  });
+
+  // Para testear un Componente, no lo pongo entre < /> dentro del find(). Lo esribo tal cual, sin < />
+  // El metodo "at" me permite acceder a un nodo en especifico de un tipo de elemento o componente en cuestion.
+  it.only("Validate if when click button, go to link", () => {
+    const buyButton = wrapper.find(ProductCart).at(0).find(Button);
+    // Testeando el metodo preventDefault que hace parte del objeto Event al hacer click a un boton
+
+    const clickEventObject = { preventDefault: jest.fn() };
+    buyButton.simulate("click", clickEventObject);
+    expect(clickEventObject.preventDefault).toBeCalledTimes(1);
+    // Testeando el cambio en la url
+    expect(global.window.location.pathname).toEqual(
+      `/detail/${products[0].id}`
+    );
   });
 });

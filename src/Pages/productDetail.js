@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Row, Col } from "react-bootstrap";
+import Product from "../Components/Product";
 
 import { motion } from "framer-motion";
 
@@ -8,6 +8,15 @@ export default function ProductDetail({ products }) {
 
   const productData = products?.find((p) => p.id === Number(id));
 
+  const productDataProps = {
+    image: productData.image,
+    title: productData.title,
+    description: productData.description,
+    price: productData.price,
+    category: productData.category,
+    rating: productData.rating,
+  };
+
   return (
     <motion.div
       className="productDetail mt-5"
@@ -15,22 +24,7 @@ export default function ProductDetail({ products }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <Row>
-        <Col>
-          <img src={productData.image} alt={productData.title} />
-        </Col>
-        <Col>
-          <h3> {productData.title} </h3>
-          <h4> Price: ${productData.price} </h4>
-          <p> {productData.description} </p>
-          <hr />
-          <p> Category: {productData.category} </p>
-          <p>
-            Rating: {productData.rating.rate}
-            <span> &#9733;</span> Count: {productData.rating.count}
-          </p>
-        </Col>
-      </Row>
+      <Product {...productDataProps} />
     </motion.div>
   );
 }

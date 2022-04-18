@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import Navigation from "./Components/navigation";
+import Navigation from "./Components/Navigation";
 import ClassComponent from "./Components/ClassComponent";
 import Study from "./Components/Study";
 
@@ -21,7 +21,6 @@ function App() {
 
   useEffect(() => {
     fetchData("https://fakestoreapi.com/products", getProducts);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const location = useLocation();

@@ -30,7 +30,8 @@ function ProductCart({ title, image, id }) {
 
   const navigate = useNavigate();
 
-  const handleOnRedirect = () => {
+  const handleOnRedirect = (e) => {
+    e.preventDefault();
     navigate(`/detail/${id}`);
   };
 
@@ -42,7 +43,7 @@ function ProductCart({ title, image, id }) {
       exit={{ opacity: 0 }}
     >
       <img src={image} alt={title}></img>
-      <h5 className="titleProductCart"> {title} </h5>
+      <h5 className="titleProductCart">{title}</h5>
       <Row className="mt-4">
         <Col>
           <span>
