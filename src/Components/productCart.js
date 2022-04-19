@@ -36,7 +36,12 @@ function ProductCart({ title, image, id }) {
   };
 
   return (
-    <motion.div className="productCart my-4" animate={{ opacity: 1 }}>
+    <motion.div
+      className="productCart my-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <img src={image} alt={title}></img>
       <h5 className="titleProductCart">{title}</h5>
       <Row className="mt-4">
