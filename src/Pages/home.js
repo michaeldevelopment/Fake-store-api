@@ -7,12 +7,20 @@ import { motion } from "framer-motion";
 
 export default function Home({ products, seconds, active }) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <h2 className="text-center my-3"> Products </h2>
+    <>
+      <motion.h2
+        className="text-center my-3"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1.2 }}
+        transition={{
+          ease: "easeInOut",
+          delay: 0.5,
+          type: "tween",
+        }}
+      >
+        {" "}
+        Products{" "}
+      </motion.h2>
       <Container className="my-1">
         <Row>
           {products.map((product) => {
@@ -31,6 +39,6 @@ export default function Home({ products, seconds, active }) {
           })}
         </Row>
       </Container>
-    </motion.div>
+    </>
   );
 }

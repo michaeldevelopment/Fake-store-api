@@ -6,7 +6,12 @@ import { motion } from "framer-motion";
 export default function About() {
   return (
     <>
-      <motion.div className="aboutCard mt-4">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="aboutCard mt-4"
+      >
         <Row>
           <Col>
             <img src={Michael} alt="Michael"></img>

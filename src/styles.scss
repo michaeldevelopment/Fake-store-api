@@ -2,6 +2,10 @@
 
 // Valores con $, propiedades CSS, mixing, repetir el selector padre con amper sans
 
+body {
+  overflow-x: hidden;
+}
+
 .productCart {
   display: flex;
   flex-direction: column;

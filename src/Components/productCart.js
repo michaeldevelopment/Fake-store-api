@@ -8,7 +8,14 @@ function ProductCart({ title, image, id }) {
   const [minutes, setMinutes] = useState(Math.floor(Math.random() * 2));
   const [seconds, setSeconds] = useState(Math.floor(Math.random() * 59) + 0);
 
+  const [isHovered, setIsHovered] = useState();
+
   var timer = useRef();
+
+  const variants = {
+    variant1: {},
+    variant2: {},
+  };
 
   useEffect(() => {
     timer.current = setInterval(() => {
@@ -36,36 +43,45 @@ function ProductCart({ title, image, id }) {
   };
 
   return (
-    <motion.div
-      className="productCart my-4"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <img src={image} alt={title}></img>
-      <h5 className="titleProductCart">{title}</h5>
-      <Row className="mt-4">
-        <Col>
-          <span>
-            {"0"}
-            {minutes}:
-          </span>
-          <span>
-            {seconds < 10 && "0"}
-            {seconds}
-          </span>
-        </Col>
-        <Col>
-          <Button
-            onClick={handleOnRedirect}
-            disabled={active}
-            className="buyButton"
-          >
-            Comprar
-          </Button>
-        </Col>
-      </Row>
-    </motion.div>
+      <motion.div
+        className="productCart my-4"
+        initial={{ opacity: 0, color: "#fff" }}
+        animate={{
+          scale: 0.93,
+          opacity: 1,
+          color: "#363636",
+          rotate: isHovered ? 5 : 0,
+        }}
+      >
+        <img src={image} alt={title}></img>
+        <h5 className="titleProductCart">{title}</h5>
+        <Row className="mt-4">
+          <Col>
+            <span>
+              {"0"}
+              {minutes}:
+            </span>
+            <span>
+              {seconds < 10 && "0"}
+              {seconds}
+            </span>
+          </Col>
+          <Col>
+            <Button
+              onClick={handleOnRedirect}
+              disabled={active}
+              className="buyButton"
+            >
+              Comprar
+            </Button>
+          </Col>
+        </Row>
+      </motion.div>
+    </div>
   );
 }
 
