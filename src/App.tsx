@@ -8,8 +8,8 @@ import ClassComponent from "./Components/ClassComponent";
 import Study from "./Components/Study";
 
 import About from "./Pages/about";
-import Home from "./Pages/home";
-import ProductDetail from "./Pages/productDetail.js";
+import Home from "./Pages/Home";
+import ProductDetail from "./Pages/ProductDetail";
 
 import fetchData from "./utils/fetchData";
 
@@ -20,9 +20,8 @@ import { AnimatePresence } from "framer-motion";
 function App() {
   const { products, getProducts } = ProductsConsumer();
 
-  useEffect(async () => {
-    const data = await fetchData();
-    getProducts(data);
+  useEffect(() => {
+    fetchData().then((data) => getProducts(data));
   }, []);
 
   const location = useLocation();
@@ -34,7 +33,7 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route
               path="/"
-              element={products && <Home products={products} />}
+              element={products.length && <Home products={products} />}
             />
             <Route path="/about" element={<About />} />
             <Route

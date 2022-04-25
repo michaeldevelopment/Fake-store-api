@@ -1,6 +1,4 @@
-import React from "react";
 import { Row, Col } from "react-bootstrap";
-import Michael from "../images/michael.jpg";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -14,7 +12,7 @@ export default function About() {
       >
         <Row>
           <Col>
-            <img src={Michael} alt="Michael"></img>
+            <img src="../images/michael.jpg" alt="Michael"></img>
           </Col>
           <Col className="my-3">
             <h3> Michael Sanabria </h3>

@@ -1,11 +1,14 @@
 import React from "react";
-
 import { Container, Row, Col } from "react-bootstrap";
 import ProductCart from "../Components/productCart";
 
 import { motion } from "framer-motion";
 
-export default function Home({ products, seconds, active }) {
+import { productsInterface } from "../types";
+
+// : React.FC<productsInterface>
+
+export default function Home({ products }: productsInterface) {
   return (
     <>
       <motion.h2
@@ -18,8 +21,7 @@ export default function Home({ products, seconds, active }) {
           type: "tween",
         }}
       >
-        {" "}
-        Products{" "}
+        Products
       </motion.h2>
       <Container className="my-1">
         <Row>
@@ -30,9 +32,6 @@ export default function Home({ products, seconds, active }) {
                   title={product.title}
                   image={product.image}
                   id={product.id}
-                  seconds={seconds}
-                  active={active}
-                  className={`productCart[${product.id}]`}
                 />
               </Col>
             );
@@ -42,3 +41,5 @@ export default function Home({ products, seconds, active }) {
     </>
   );
 }
+
+// className={`productCart[${product.id}]`} -- className utilizado para pruebas en ProductCart

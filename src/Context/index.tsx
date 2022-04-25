@@ -6,9 +6,16 @@ import React, {
   useCallback,
 } from "react";
 
-export const productsContext = createContext();
+import { contextInterface } from "../types";
 
-export const ProductsProvider = ({ children }) => {
+const initValue = {
+  products: [],
+  getProducts: () => null,
+};
+
+export const productsContext = createContext<contextInterface>(initValue);
+
+export const ProductsProvider: React.FC = ({ children }) => {
   const [products, setProducts] = useState([]);
 
   const getProducts = useCallback((products) => {
