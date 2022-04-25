@@ -3,22 +3,23 @@ import { Row, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-function ProductCart({ title, image, id }) {
-  const [active, setActive] = useState(false);
-  const [minutes, setMinutes] = useState(Math.floor(Math.random() * 2));
-  const [seconds, setSeconds] = useState(Math.floor(Math.random() * 59) + 0);
+import { propsProductCart } from "../types";
 
-  const [isHovered, setIsHovered] = useState();
+function ProductCart({ title, image, id }: propsProductCart) {
+  const [active, setActive] = useState<boolean>(false);
+  const [minutes, setMinutes] = useState<number>(Math.floor(Math.random() * 2));
+  const [seconds, setSeconds] = useState<number>(
+    Math.floor(Math.random() * 59) + 0
+  );
 
-  var timer = useRef();
+  const [isHovered, setIsHovered] = useState<boolean>();
 
-  const variants = {
-    variant1: {},
-    variant2: {},
-  };
+  // // Necesario agregarle al useRef el tipado relacionado con la etiqueta HTML a la que esta relacionado
+  // // En este caso, NO esta relacionado con ninguna HTML tag
+  // var timer = useRef();
 
   useEffect(() => {
-    timer.current = setInterval(() => {
+    const timer = setInterval(() => {
       setSeconds(seconds - 1);
       if (seconds === 0) {
         setMinutes(minutes - 1);
@@ -28,16 +29,16 @@ function ProductCart({ title, image, id }) {
         setMinutes(0);
         setSeconds(0);
         setActive(true);
-        clearInterval(timer.current);
+        clearInterval(timer);
       }
     }, 1000);
 
-    return () => clearInterval(timer.current);
+    return () => clearInterval(timer);
   });
 
   const navigate = useNavigate();
 
-  const handleOnRedirect = (e) => {
+  const handleOnRedirect = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     navigate(`/detail/${id}`);
   };

@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 
-const Navigation = ({ children }) => {
+// React FC es necesario para permitir que el componente acepte HIJOS.
+
+const Navigation: React.FC = ({ children }) => {
   return (
     <>
       <Navbar bg="light" expand="lg">
