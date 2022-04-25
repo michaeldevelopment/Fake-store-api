@@ -4,11 +4,11 @@ import ProductCart from "../Components/productCart";
 
 import { motion } from "framer-motion";
 
-import { productsInterface } from "../types";
+import { initialStateReducer } from "../types";
 
 // : React.FC<productsInterface>
 
-export default function Home({ products }: productsInterface) {
+export default function Home({ products }: initialStateReducer) {
   return (
     <>
       <motion.h2

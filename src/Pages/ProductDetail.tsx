@@ -4,9 +4,9 @@ import { Row, Col } from "react-bootstrap";
 
 import { motion } from "framer-motion";
 
-import { productsInterface } from "../types";
+import { initialStateReducer } from "../types";
 
-const ProductDetail: React.FC<productsInterface> = ({ products }) => {
+const ProductDetail: React.FC<initialStateReducer> = ({ products }) => {
   const { id } = useParams();
 
   const productData = products?.find((p) => p.id === Number(id));

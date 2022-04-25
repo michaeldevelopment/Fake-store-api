@@ -1,11 +1,10 @@
 /* eslint-disable */
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import Navigation from "./Components/Navigation";
 import ClassComponent from "./Components/ClassComponent";
-import Study from "./Components/Study";
 
 import About from "./Pages/about";
 import Home from "./Pages/Home";
@@ -13,15 +12,20 @@ import ProductDetail from "./Pages/ProductDetail";
 
 import fetchData from "./utils/fetchData";
 
-import { ProductsConsumer } from "./Context/index";
+import { useSelector, useDispatch } from "./Context/index";
 
 import { AnimatePresence } from "framer-motion";
+import { loadProducts } from "./store/actions";
+
+import { productsTypeFetch } from "./types";
 
 function App() {
-  const { products, getProducts } = ProductsConsumer();
+  const state = useSelector();
+  const { products }: { products: productsTypeFetch } = state;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData().then((data) => getProducts(data));
+    fetchData().then((data) => dispatch(loadProducts(data)));
   }, []);
 
   const location = useLocation();
@@ -43,7 +47,6 @@ function App() {
               }
             />
             <Route path="/class" element={<ClassComponent />} />
-            <Route path="/study" element={<Study />} />
           </Routes>
         </AnimatePresence>
       </Navigation>

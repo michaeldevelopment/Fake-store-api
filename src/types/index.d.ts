@@ -15,18 +15,32 @@ export interface productInterface {
   rating: ratingType
 }
 
-type productsTypeFetch = Array<productInterface>
+type productsTypeFetch = productInterface[] 
 
-export interface productsInterface {
-  products: productsTypeFetch
+export interface initialStateReducer {
+  products: productInterface[]
 }
 
-export interface contextInterface extends productsInterface {
-  getProducts: (products: productsTypeFetch) => void
-}
+
+// export interface contextInterface extends productsInterface {
+//   getProducts: (products: productsTypeFetch) => void
+// }
 
 export interface propsProductCart {
   title: string,
   image: string,
   id: number,
 }
+
+interface actionType {
+  type: string,
+}
+
+interface actionLoadProducts extends actionType {
+  type: "loadProducts",
+  payload: productsTypeFetch 
+}
+
+export type dispatchActionTypes = actionLoadProducts 
+
+
