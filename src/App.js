@@ -6,7 +6,8 @@ import Navigation from "./Components/navigation";
 import ClassComponent from "./Components/ClassComponent";
 
 import { useDispatch } from "react-redux";
-import { fetchProducts } from "./store/actions";
+
+import { fetchProducts } from "./Store/actions";
 
 import About from "./Pages/about";
 import Home from "./Pages/home";

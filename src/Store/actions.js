@@ -18,12 +18,31 @@ export const hideLoader = () => ({
 });
 
 export const fetchProducts = () => async (dispatch) => {
-  dispatch(showLoader());
+  // try {
+  //   dispatch(showLoader());
+  //   const products = await axios.get(url).then((res) => res.data);
+  // } finally {
+  //   dispatch(hideLoader());
+  // }
+
+  // Applying first SOLID method -> each functionality has its own responsibility
+  // Is more understandable and legible
 
   try {
-    const products = await axios.get(url).then((res) => res.data);
+    dispatch(showLoader());
+    const products = await fetchData(url);
     dispatch(loadProducts(products));
   } finally {
     dispatch(hideLoader());
   }
+};
+
+const fetchData = async (url) => {
+  return await axios
+    .get(url)
+    .catch((error) => {
+      if (error.code === "404")
+        throw new Error("Something has crashed at the data fetching. Sorry.");
+    })
+    .then((res) => res.data);
 };

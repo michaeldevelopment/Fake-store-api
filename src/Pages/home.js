@@ -7,7 +7,9 @@ import { useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 
 const Home = () => {
-  const products = useSelector((state) => state.products);
+  const products = useSelector((state) => state);
+
+  console.log(products);
 
   return (
     <>
@@ -15,14 +17,10 @@ const Home = () => {
       <Container className="my-1">
         <Row>
           <Loader />
-          {products.map((product) => {
+          {products?.map(({ title, image, id }) => {
             return (
-              <Col key={product.id} md="auto">
-                <ProductCart
-                  title={product.title}
-                  image={product.image}
-                  id={product.id}
-                />
+              <Col key={id} md="auto">
+                <ProductCart title={title} image={image} id={id} />
               </Col>
             );
           })}

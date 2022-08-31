@@ -7,22 +7,30 @@ export default function ProductDetail() {
   const products = useSelector((state) => state.products);
 
   const productData = products.find((p) => p.id === Number(id));
+  const {
+    image,
+    title,
+    price,
+    description,
+    category,
+    rating: { rate, count },
+  } = productData;
 
   return (
     <div className="productDetail mt-5">
       <Row>
         <Col>
-          <img src={productData.image} alt={productData.title} />
+          <img src={image} alt={title} />
         </Col>
         <Col>
-          <h3> {productData.title} </h3>
-          <h4> Price: ${productData.price} </h4>
-          <p> {productData.description} </p>
+          <h3> {title} </h3>
+          <h4> Price: ${price} </h4>
+          <p> {description} </p>
           <hr />
-          <p> Category: {productData.category} </p>
+          <p> Category: {category} </p>
           <p>
-            Rating: {productData.rating.rate}
-            <span> &#9733;</span> Count: {productData.rating.count}
+            Rating: {rate}
+            <span> &#9733;</span> Count: {count}
           </p>
         </Col>
       </Row>
