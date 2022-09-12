@@ -1,6 +1,6 @@
-import initialState from "../initialState";
+import { loaderInitialState } from "../initialState";
 
-function loaderReducer(prevState = initialState, actions) {
+function loaderReducer(prevState = loaderInitialState, actions) {
   const { type, payload } = actions;
 
   switch (type) {

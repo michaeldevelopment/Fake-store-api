@@ -1,3 +1,3 @@
-const initialState = { products: [], currentProduct: {}, isLoading: "" };
+export const productsInitialState = { products: [], currentProduct: {} };
 
-export default initialState;
+export const loaderInitialState = { isLoading: "" };

@@ -7,9 +7,7 @@ import { useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 
 const Home = () => {
-  const products = useSelector((state) => state);
-
-  console.log(products);
+  const { products } = useSelector((state) => state.productsReducer);
 
   return (
     <>

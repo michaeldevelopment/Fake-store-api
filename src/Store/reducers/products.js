@@ -1,6 +1,6 @@
-import initialState from "../initialState";
+import { productsInitialState } from "../initialState";
 
-function productsReducer(prevState = initialState, actions) {
+function productsReducer(prevState = productsInitialState, actions) {
   const { type, payload } = actions;
 
   switch (type) {
