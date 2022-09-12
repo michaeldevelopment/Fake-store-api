@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const products = useSelector((state) => state.products);
+  const { products } = useSelector((state) => state.productsReducer);
 
   const productData = products.find((p) => p.id === Number(id));
   const {

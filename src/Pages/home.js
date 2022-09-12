@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
-import ProductCart from "../Components/productCart";
+import ProductCart from "../components/productCart";
 
 import { useSelector } from "react-redux";
-import Loader from "../Components/Loader";
+import Loader from "../components/Loader";
 
 const Home = () => {
   const { products } = useSelector((state) => state.productsReducer);

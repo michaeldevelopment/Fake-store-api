@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navigation from "./Components/navigation";
-import ClassComponent from "./Components/ClassComponent";
+import Navigation from "./components/navigation";
+import ClassComponent from "./components/ClassComponent";
 
 import { useDispatch } from "react-redux";
 
 import { fetchProducts } from "./Store/actions";
 
-import About from "./Pages/about";
-import Home from "./Pages/home";
-import ProductDetail from "./Pages/productDetail.js";
+import About from "./pages/about";
+import Home from "./pages/home";
+import ProductDetail from "./pages/productDetail.js";
 
 function App() {
   const dispatch = useDispatch();
