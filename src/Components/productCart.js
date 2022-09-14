@@ -1,15 +1,9 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { useTiming } from "../customHooks/useTiming";
 
-function ProductCart({ title, image, id }) {
+function ProductCart({ title, image, onClickFunction }) {
   const { minutes, seconds, active } = useTiming();
-  let navigate = useNavigate();
-
-  const handleOnRedirect = () => {
-    navigate(`/detail/${id}`);
-  };
 
   return (
     <>
@@ -28,7 +22,7 @@ function ProductCart({ title, image, id }) {
             </span>
           </Col>
           <Col>
-            <Button onClick={handleOnRedirect} disabled={active}>
+            <Button onClick={onClickFunction} disabled={active}>
               Comprar
             </Button>
           </Col>
