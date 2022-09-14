@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Nav, Navbar, Container } from "react-bootstrap";
 
-const Navigation = ({ children }) => {
+const NavigationBar = ({ children }) => {
   return (
     <>
       <Navbar bg="light" expand="lg">
@@ -28,4 +28,4 @@ const Navigation = ({ children }) => {
   );
 };
 
-export default Navigation;
+export default NavigationBar;

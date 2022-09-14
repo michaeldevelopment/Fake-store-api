@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Navigation from "./components/navigation";
+import NavigationBar from "./components/NavigationBar";
 import ClassComponent from "./components/ClassComponent";
 
 import { useDispatch } from "react-redux";
@@ -23,14 +23,14 @@ function App() {
   return (
     <>
       <Router>
-        <Navigation>
+        <NavigationBar>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/detail/:id" element={<ProductDetail />} />
             <Route path="/class" element={<ClassComponent />} />
           </Routes>
-        </Navigation>
+        </NavigationBar>
       </Router>
     </>
   );
